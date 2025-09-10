@@ -43,3 +43,24 @@ ScrollReveal().reveal('.home-content, heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img, .services-container, .portfolio-box, .contact form', { origin: 'buttom' });
 ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-contact p, .about-contact', { origin: 'right' });
+
+
+
+
+(function(){
+  emailjs.init("CEbgTN8sBT71dOOCP");
+})();
+
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // يمنع تحديث الصفحة
+
+  emailjs.sendForm("service_13uwcm1", "template_0mbnowq", this)
+    .then(function(response) {
+       alert("✅ Message Sent Successfully!");
+       console.log("SUCCESS!", response.status, response.text);
+    }, function(error) {
+       alert("❌ Failed to Send Message. Please try again.");
+       console.error("FAILED...", error);
+    });
+});
